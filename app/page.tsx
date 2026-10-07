@@ -53,8 +53,7 @@ export default function Home() {
               </Words>
             </p>
             <p className="reveal">
-              <Words>{"Today, I’m an Advancement Associate at YAI in "}</Words>
-              <strong><Words>Brooklyn</Words></strong>
+              <Words>{"Today, I’m an Advancement Associate at YAI"}</Words>
               <Words>{", where I design and build our fundraising websites, campaigns, and donate pages to secure resources for children and adults with intellectual and developmental disabilities."}</Words>
             </p>
             <p className="reveal">
