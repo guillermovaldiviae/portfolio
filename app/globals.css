@@ -1,0 +1,231 @@
+@import "tailwindcss";
+@import "./exhibit.css";
+
+/* Fonts used inside the interactive demos (self-hosted in /public/fonts) */
+@font-face { font-family: Poppins; font-weight: 400; font-display: swap; src: url(/fonts/poppins-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: Poppins; font-weight: 500; font-display: swap; src: url(/fonts/poppins-latin-500-normal.woff2) format("woff2"); }
+@font-face { font-family: Poppins; font-weight: 600; font-display: swap; src: url(/fonts/poppins-latin-600-normal.woff2) format("woff2"); }
+@font-face { font-family: Poppins; font-weight: 700; font-display: swap; src: url(/fonts/poppins-latin-700-normal.woff2) format("woff2"); }
+@font-face { font-family: Mulish; font-weight: 400; font-display: swap; src: url(/fonts/mulish-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: Mulish; font-weight: 600; font-display: swap; src: url(/fonts/mulish-latin-600-normal.woff2) format("woff2"); }
+@font-face { font-family: Mulish; font-weight: 700; font-display: swap; src: url(/fonts/mulish-latin-700-normal.woff2) format("woff2"); }
+@font-face { font-family: Mulish; font-weight: 800; font-display: swap; src: url(/fonts/mulish-latin-800-normal.woff2) format("woff2"); }
+
+:root {
+  --background: #0b0b0c;
+  --foreground: #ededef;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter-tight);
+  --font-mono: var(--font-inter-tight);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Case study popup motion */
+@keyframes cs-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes cs-rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.cs-fade { animation: cs-fade-in 200ms ease-out both; }
+.cs-rise { animation: cs-rise-in 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+
+/* Vinyl record spin */
+@keyframes vinyl-spin {
+  to { transform: rotate(360deg); }
+}
+.vinyl-spin { animation: vinyl-spin 5s linear infinite; }
+.group:hover .vinyl-spin { animation-duration: 2.5s; }
+
+/* PainPal prototype motion */
+@keyframes pp-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.pp-grow { animation: pp-grow 500ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes pp-toast { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+.pp-toast { animation: pp-toast 220ms ease-out both; }
+
+/* PainPal mascot + demo motion */
+@keyframes pp-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.pp-bob { animation: pp-bob 2.4s ease-in-out infinite; }
+@keyframes pp-beat { 0%, 100% { transform: scale(1); } 12% { transform: scale(1.14); } 24% { transform: scale(1); } 36% { transform: scale(1.1); } }
+.pp-heart { animation: pp-beat 1.8s ease-in-out infinite; }
+@keyframes pp-glow { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+.pp-antenna { animation: pp-glow 2.4s ease-in-out infinite; }
+@keyframes pp-pop { 0% { transform: scale(0.4) rotate(-12deg); } 60% { transform: scale(1.15) rotate(6deg); } 100% { transform: scale(1) rotate(0); } }
+.pp-pop { animation: pp-pop 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+/* Body map: hovering the figure reveals every selectable area, the one under the cursor turns solid */
+.pp-map:hover .pp-region[aria-pressed="false"] { stroke: rgba(229, 50, 37, 0.28); stroke-dasharray: 5 6; }
+.pp-region:hover, .pp-region:focus-visible { stroke: #E53225 !important; stroke-dasharray: 6 5; }
+.pp-region[aria-pressed="false"]:hover { fill: rgba(229, 50, 37, 0.14); }
+/* PainPal story (components/demos/PainPalStory.tsx) */
+@keyframes pp-tap { 0% { transform: scale(0.4); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+.pp-tap { animation: pp-tap 900ms ease-out infinite; }
+@keyframes pp-ring { 0% { opacity: 0.8; transform: scale(0.8); } 100% { opacity: 0; transform: scale(1.5); } }
+.pp-ring { transform-box: fill-box; transform-origin: center; animation: pp-ring 1.6s ease-out infinite; }
+@keyframes pp-drop { from { opacity: 0; transform: translateY(-24px) scale(0.96); } to { opacity: 1; transform: none; } }
+.pp-drop { animation: pp-drop 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes pp-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.6); } 50% { box-shadow: 0 0 0 8px rgba(255,255,255,0); } }
+.pp-pulse { animation: pp-pulse 1.8s ease-in-out infinite; }
+@keyframes pp-rise { from { transform: translateY(105%); } 70% { transform: translateY(-4%); } to { transform: translateY(0); } }
+.pp-rise { animation: pp-rise 750ms cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+@keyframes pp-sink { from { transform: translateY(0); } to { transform: translateY(110%); } }
+.pp-sink { animation: pp-sink 450ms ease-in both; }
+@keyframes pp-bubble { 0%, 35% { opacity: 0; transform: translateY(8px) scale(0.9); } to { opacity: 1; transform: none; } }
+.pp-bubble { animation: pp-bubble 900ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+@keyframes pp-fade-out { to { opacity: 0; } }
+.pp-fade-out { animation: pp-fade-out 450ms ease-in both; }
+@keyframes sm-flow { to { stroke-dashoffset: -24; } }
+.sm-flow { animation: sm-flow 0.9s linear infinite; }
+@keyframes gn-pulse { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+.gn-pulse { animation: gn-pulse 1.6s ease-in-out infinite; }
+@keyframes nav-hint { 0%, 100% { box-shadow: 0 0 0 0 rgba(247,148,29,0); } 50% { box-shadow: 0 0 0 5px rgba(247,148,29,0.35); } }
+.nav-hint { animation: nav-hint 1.8s ease-in-out infinite; }
+
+/* Big name at the top of the landing page (components/NameLockup.tsx) */
+.name-lockup { font-weight: 600; letter-spacing: -0.045em; line-height: 0.88; white-space: nowrap; font-size: clamp(48px, 21vw, 160px); }
+.name-fit { display: inline-flex; flex-direction: column; gap: 0.06em; cursor: default; }
+@media (min-width: 640px) {
+  .name-lockup { font-size: 10.6vw; }
+  .name-fit { flex-direction: row; align-items: baseline; gap: 0.22em; }
+}
+.name-ch { transition: color 700ms ease; }
+.name-ch.lit { transition: none; }
+
+/* ------------------------------------------------------------------
+   Landing page layout (app/page.tsx): the whole screen, on a 12-column
+   grid. Labels sit in the first 2 columns, content in the other 10.
+   ------------------------------------------------------------------ */
+:root { --gut: clamp(16px, 3vw, 40px); --line: rgba(255, 255, 255, 0.1); --muted: #888890; }
+.home-wrap { padding-inline: var(--gut); }
+.home-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; }
+.home-lbl { grid-column: 1 / span 2; padding-top: 8px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.home-main { grid-column: 3 / span 10; min-width: 0; }
+
+.home-bar { position: sticky; top: 0; z-index: 50; background: rgb(11 11 12 / 0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.home-bar-in { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 16px; font-size: 14px; }
+.home-bar nav { display: flex; gap: 28px; }
+
+.home-hero { padding-top: clamp(48px, 9vw, 120px); }
+.home-sub { padding-block: 28px; border-bottom: 1px solid var(--line); }
+.home-sub p { grid-column: 1 / span 8; margin: 0; font-size: clamp(18px, 1.6vw, 22px); color: var(--muted); }
+
+.home-sec { padding-top: clamp(72px, 10vw, 140px); }
+.home-about { grid-column: 3 / span 8; display: grid; gap: 22px; font-size: clamp(20px, 1.9vw, 28px); line-height: 1.45; letter-spacing: -0.01em; color: #d1d1d6; }
+.home-about strong { color: #fff; font-weight: 500; }
+
+.home-foot { padding-block: clamp(96px, 12vw, 180px) 32px; }
+.home-fine { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+
+/* Photo collage (components/PhotoCollage.tsx). Every photo uncropped; each row fills the width. */
+.collage { --cg: 12px; display: flex; flex-wrap: wrap; column-gap: var(--cg); margin-top: 24px; margin-bottom: calc(-1 * var(--cg)); }
+.collage-break { flex-basis: 100%; height: 0; }
+.collage-tile { position: relative; flex-shrink: 1; flex-basis: 0; min-width: 0; margin-bottom: var(--cg); padding: 0; border: 0; border-radius: 6px; overflow: hidden; background: #141416; cursor: zoom-in; }
+.collage-tile img { object-fit: cover; transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 400ms ease; }
+@media (hover: hover) {
+  .collage:hover .collage-tile img { filter: brightness(0.55) saturate(0.7); }
+  .collage .collage-tile:hover img { filter: none; transform: scale(1.03); }
+}
+.collage-tile:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.collage-cap { position: absolute; left: 10px; bottom: 10px; font-size: 12px; color: #fff; background: rgb(11 11 12 / 0.82); border-radius: 999px; padding: 5px 10px; opacity: 0; transform: translateY(6px); transition: opacity 250ms, transform 250ms; pointer-events: none; }
+.collage-tile:hover .collage-cap, .collage-tile:focus-visible .collage-cap { opacity: 1; transform: none; }
+.collage-lb { position: fixed; inset: 0; z-index: 90; display: flex; flex-direction: column; background: rgb(0 0 0 / 0.92); }
+.collage-lb-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 18px; font-size: 12px; color: var(--muted); }
+.collage-lb-bar button { border: 1px solid rgb(255 255 255 / 0.18); background: rgb(255 255 255 / 0.06); color: #fff; border-radius: 999px; padding: 8px 15px; font-size: 13px; cursor: pointer; }
+.collage-lb-body { flex: 1; min-height: 0; display: grid; place-items: center; padding: 0 16px; }
+.collage-lb-body img { max-width: min(1200px, 100%); max-height: 100%; object-fit: contain; border-radius: 6px; }
+
+/* Selected Work rows (components/SelectedWork.tsx): big title, description under it, type top right */
+.work-group + .work-group { margin-top: 56px; }
+.work-group > .home-lbl { padding: 0 0 14px; border-bottom: 1px solid var(--line); }
+.work-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; row-gap: 12px; align-items: start; width: 100%; padding-block: 30px; border-bottom: 1px solid var(--line); text-align: left; cursor: pointer; }
+.work-row:focus-visible { outline: 1px solid rgb(255 255 255 / 0.4); outline-offset: 4px; border-radius: 2px; }
+.work-t { grid-column: 1; grid-row: 1; font-size: clamp(30px, 3.6vw, 56px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: #fff; transition: color 180ms; }
+.work-s { grid-column: 1; grid-row: 2; max-width: 62ch; margin: 0; font-size: 15px; line-height: 1.55; color: var(--muted); transition: color 180ms; }
+.work-k { grid-column: 2; grid-row: 1; padding-top: 0.6em; font-size: 13px; color: var(--muted); text-align: right; white-space: nowrap; transition: color 180ms; }
+.work-k i { font-style: normal; display: inline-block; transition: transform 200ms; }
+.work-row:hover .work-t, .work-row:hover .work-k { color: var(--accent); }
+.work-row:hover .work-s { color: #b4b4bb; }
+.work-row:hover .work-k i { transform: translateX(4px); }
+
+@media (max-width: 1100px) {
+  .home-about { grid-column: 3 / span 10; }
+}
+@media (max-width: 760px) {
+  .home-grid { grid-template-columns: minmax(0, 1fr); }
+  .home-grid > * { grid-column: 1 / -1 !important; }
+  .home-grid > .home-lbl { padding: 0 0 20px; }
+  .home-bar nav { gap: 18px; }
+  .collage { --cg: 8px; }
+  .work-row { column-gap: 12px; row-gap: 8px; padding-block: 22px; }
+  .work-t { font-size: 26px; }
+  .work-s { grid-column: 1 / -1; }
+  .work-k { padding-top: 0.5em; white-space: normal; max-width: 9.5em; font-size: 12px; line-height: 1.35; }
+}
+
+/* Scroll effects (components/ScrollEffects.tsx). Only active when layout.tsx adds .motion to <html>. */
+.motion .reveal { opacity: 0; transform: translateY(18px); transition: opacity 800ms ease, transform 800ms cubic-bezier(0.2, 0.8, 0.2, 1); transition-delay: var(--reveal-delay, 0ms); }
+.motion .reveal.in { opacity: 1; transform: none; }
+.motion .words .w { color: rgb(237 237 239 / 0.16); transition: color 350ms ease; }
+.motion .words .w.lit { color: inherit; }
+
+@media (prefers-reduced-motion: reduce) {
+  .name-ch { transition: none; }
+  .pp-grow, .pp-toast, .pp-bob, .pp-heart, .pp-antenna, .pp-pop, .sm-flow, .gn-pulse, .nav-hint, .pp-tap, .pp-ring, .pp-drop, .pp-pulse, .pp-rise, .pp-sink, .pp-bubble { animation: none; }
+  html { scroll-behavior: auto; }
+  .cs-fade, .cs-rise, .vinyl-spin { animation: none; }
+}
+
+/* ------------------------------------------------------------------
+   Accent hovers — cyan, magenta, yellow.
+   Put .accent-cyan / .accent-magenta / .accent-yellow on an element (or a
+   parent) to pick the color, then one of the .hl-* classes for the effect.
+   ------------------------------------------------------------------ */
+:root {
+  --cyan: #14a9d8;
+  --magenta: #ff71ca;
+  --yellow: #e0e456;
+  --accent: var(--cyan);
+}
+.accent-cyan { --accent: var(--cyan); }
+.accent-magenta { --accent: var(--magenta); }
+.accent-yellow { --accent: var(--yellow); }
+
+.hl-pill,
+.hl-outline,
+.hl-text,
+.hl-frame,
+.group .hl-group-text,
+.group .hl-group-frame {
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+/* Nav links: soft filled pill + accent text */
+.hl-pill { border-radius: 8px; padding: 4px 10px; margin: -4px -10px; }
+.hl-pill:hover { background-color: rgba(255, 255, 255, 0.06); color: var(--accent); }
+
+/* Buttons: accent outline + accent text */
+.hl-outline:hover { color: var(--accent); border-color: var(--accent); background-color: transparent; }
+
+/* Plain text links */
+.hl-text:hover { color: var(--accent); }
+
+/* Inside a hovered .group (cards, rows) */
+.group:hover .hl-group-text { color: var(--accent); }
+.group:hover .hl-group-frame,
+.group.hl-group-frame:hover,
+.hl-frame:hover { border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+
+::selection { background: var(--yellow); color: #0b0b0c; }
