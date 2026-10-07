@@ -85,9 +85,6 @@ export default function Home() {
             <a href="https://www.linkedin.com/in/guillermovaldiviae" target="_blank" rel="noreferrer" className={"accent-magenta " + pill}>
               LinkedIn<ArrowUpRight />
             </a>
-            <a href="https://github.com/guillermovaldiviae" target="_blank" rel="noreferrer" className={"accent-yellow " + pill}>
-              GitHub<ArrowUpRight />
-            </a>
           </div>
         </div>
         <div className="home-fine">
