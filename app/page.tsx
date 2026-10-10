@@ -49,7 +49,7 @@ export default function Home() {
           <ScrollWords className="home-about">
             <p className="reveal">
               <Words>
-                {"I was born in New York City, but grew up all over the country. After hopping around the southwest, I came back to the city to study Psychology. I loved it, though I spent much time outside the classroom scratching a creative itch, landing freelance design gigs across the five boroughs. Following graduation, I headed overseas for a stint in London to complete research in Human-Computer Interaction."}
+                {"I was born in New York City and grew up all over the country, including 10+ years in the southwest, before coming back to the city to study Psychology. I loved it, though I spent a lot of time outside the classroom scratching a creative itch, landing freelance design gigs across the five boroughs. Following graduation, I headed overseas for a stint in London to complete research in Human-Computer Interaction."}
               </Words>
             </p>
             <p className="reveal">
