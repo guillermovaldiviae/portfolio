@@ -44,6 +44,9 @@ export default function CollectionExhibit() {
         <Piece title="On-site digital signage" note="Central Park Challenge · 2026" impact="Looping on 10-foot-plus screens around the event, these designs carried the day's advocacy message and a donate QR code, so event-day attention could turn into gifts.">
           <Island id="cpc-screens" />
         </Piece>
+        <Piece title="Large-format signage" note="Central Park Challenge · 2026" impact="The largest prints of the 40th: 3 × 6 ft photo towers carrying the anniversary branding, and a 15 ft bandshell banner, in three panels, thanking the event sponsors. I planned how the physical signage would look on site, making sure it stayed in line with the creative direction already established for the 40th anniversary celebration. Working with a graphic designer, I set the art direction and coordinated each piece from planning to event day.">
+          <Island id="cpc-signage" />
+        </Piece>
       </section>
     </>
   );

@@ -14,6 +14,7 @@ import PainPalPrototype from "./PainPalPrototype";
 import { PpProblem, PpResearch, PpFeatures, PpOnboarding } from "./PainPalStory";
 import { GcGrowth, GcTiers } from "./GivingCircle";
 import { SunStory, ScreenLoop } from "./Collection";
+import CpcSignage from "./CpcSignage";
 
 const KC = "/work/kevin-carey-legacy-golf-outing/compare";
 
@@ -53,7 +54,7 @@ const golfPairs: ComparePair[] = [
   },
 ];
 
-export const DEMO_IDS = ["cpc-redesign", "cpc-sitemap", "cpc-gallery", "golf-compare", "golf-nav", "painpal", "gc-growth", "gc-tiers", "sun-story", "cpc-screens", "give-trifold", "pp-identity", "pp-problem", "pp-research", "pp-features", "pp-onboarding"] as const;
+export const DEMO_IDS = ["cpc-redesign", "cpc-sitemap", "cpc-gallery", "golf-compare", "golf-nav", "painpal", "gc-growth", "gc-tiers", "sun-story", "cpc-screens", "give-trifold", "pp-identity", "pp-problem", "pp-research", "pp-features", "pp-onboarding", "cpc-signage"] as const;
 export type DemoId = (typeof DEMO_IDS)[number];
 
 export default function Demo({ id }: { id: DemoId }) {
@@ -90,5 +91,7 @@ export default function Demo({ id }: { id: DemoId }) {
       return <PpFeatures />;
     case "pp-onboarding":
       return <PpOnboarding />;
-  }
+    case "cpc-signage":
+      return <CpcSignage />;
+    }
 }
