@@ -51,7 +51,7 @@ export function SunStory() {
 
   return (
     // Capped width so the photos don't take over the screen
-    <div className="sun-story space-y-4 max-w-[720px]">
+    <div className="sun-story space-y-4">
       {/* Stepper */}
       <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="From his drawing to the hat">
         {SUN_STEPS.map((s, i) => (

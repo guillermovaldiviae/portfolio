@@ -140,7 +140,7 @@ export default function CpcExhibit() {
         <Template />
       </Room>
 
-      <Room id="r-structure" n={3} name="The structure" title="A nav organized by how people get involved" how="Click the nav · flip between 2025 and 2026"
+      <Room id="r-structure" n={3} name="The structure" title="A nav organized by how people get involved" how="Click a link in each year"
         intro={<p>The 2025 nav gave every option the same weight, and regional events had no link at all. In 2026 I grouped it by intent: Donate stays one tap away, Event Info answers &quot;what is this?&quot;, and Ways to Support opens everything else.</p>}>
         <Island id="cpc-sitemap" />
       </Room>
