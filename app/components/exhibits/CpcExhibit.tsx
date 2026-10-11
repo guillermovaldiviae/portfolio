@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Bars, Count, Entrance, GoalRing, Island, NextCard, Room, Seg, Tile, Zoom, reduced, useEx } from "./kit";
+import { Bars, Count, Entrance, GoalRing, Island, NextCard, Room, Seg, Tile, useEx } from "./kit";
+import CpcTemplate from "../demos/CpcTemplate";
 
 const CPC = "/work/central-park-challenge";
 
@@ -50,68 +51,6 @@ function Heard() {
   );
 }
 
-/* ================= 02 · The blank template ================= */
-
-const BLOCKS = [
-  {
-    id: "hero", label: "Hero",
-    tpl: `${CPC}/platform/default-hero.png`, tw: 1912, th: 824,
-    built: `${CPC}/redesign/hero-2026.jpg`, bw: 1600, bh: 704,
-    tNote: "A grey box, a title, a date, and two equal blue buttons. This is what the platform gives every event.",
-    bNote: "The 40th anniversary lockup with Waymo as presenting sponsor, over real event photography, with Donate set apart in the nav.",
-  },
-  {
-    id: "progress", label: "Fundraising bar",
-    tpl: `${CPC}/platform/default-progress.png`, tw: 1919, th: 478,
-    built: `${CPC}/redesign/ask-2026.jpg`, bw: 1600, bh: 557,
-    tNote: "A grey ring, a generic line, and two blue buttons.",
-    bNote: "The ring in event blue, one plain-language invitation, one Donate button, and a photo of a kid mid-run.",
-  },
-  {
-    id: "text", label: "Text block",
-    tpl: `${CPC}/platform/default-about.png`, tw: 1917, th: 390,
-    built: `${CPC}/redesign/activities-2026.jpg`, bw: 1600, bh: 890,
-    tNote: "Centered paragraphs, all at the same weight. Whatever you type becomes a wall of text.",
-    bNote: "Each accessible activity gets a name and one line, beside photos in the campaign’s circle-and-ring style.",
-  },
-  {
-    id: "signup", label: "Sign-up block",
-    tpl: `${CPC}/platform/default-tickets.png`, tw: 1919, th: 476,
-    built: `${CPC}/redesign/volunteers-2026.jpg`, bw: 1600, bh: 633,
-    tNote: "A price list and one generic button.",
-    bNote: "Volunteers get their own section: a headline, a short reason to join, and one Sign Up button.",
-  },
-];
-
-function Template() {
-  const [b, setB] = useState(0);
-  const [built, setBuilt] = useState(false);
-  const [fade, setFade] = useState(false);
-  const x = BLOCKS[b];
-  const swap = (fn: () => void) => {
-    if (reduced()) { fn(); return; }
-    setFade(true);
-    setTimeout(() => { fn(); setFade(false); }, 160);
-  };
-  return (
-    <div className="tpl">
-      <div className="tpl-tools">
-        <Seg label="Page block" items={BLOCKS.map((k, i) => ({ id: i, label: k.label }))} value={b} onChange={(i) => swap(() => setB(i))} />
-        <Seg label="Version" items={[{ id: 0, label: "Platform template" }, { id: 1, label: "My 2026 build" }]} value={built ? 1 : 0} onChange={(v) => swap(() => setBuilt(v === 1))} />
-      </div>
-      <div className={"tpl-stage" + (built ? " built" : "")}>
-        <Zoom
-          src={built ? x.built : x.tpl}
-          alt={built ? `2026 build: ${x.label}` : `GoFundMe Pro template: ${x.label}`}
-          className={fade ? "swap" : ""}
-          style={{ aspectRatio: built ? `${x.bw} / ${x.bh}` : `${x.tw} / ${x.th}` }}
-        />
-      </div>
-      <p className="tpl-note" aria-live="polite"><b>{built ? "My 2026 build" : "Platform template"}</b>{built ? x.bNote : x.tNote}</p>
-    </div>
-  );
-}
-
 /* ================= The exhibit ================= */
 
 export default function CpcExhibit() {
@@ -135,9 +74,12 @@ export default function CpcExhibit() {
         <Heard />
       </Room>
 
-      <Room id="r-platform" n={2} name="The platform" title="Working within a fixed template" how="Pick a block, then switch to my build"
-        intro={<p>GoFundMe Pro builds every event page from the same fixed blocks: a placeholder hero, a text box, a progress ring, a ticket list, all with the same blue buttons. There&apos;s no site builder and no web team, so I wrote custom HTML and CSS inside those blocks to give the 40th its own look.</p>}>
-        <Template />
+      <Room id="r-platform" n={2} name="The platform" title="Working within a fixed template" how="Switch on each layer of code · X-ray shows what's Classy and what's mine"
+        intro={<>
+          <p>GoFundMe Pro (Classy) builds every event page from the same set of blocks. I kept the built-in features that already did their job well: the fundraising thermometer, the top fundraiser leaderboards, the event map, and the footer.</p>
+          <p>Classy has no built-in feature for the parts between them, only a plain text block that accepts HTML and CSS, the only code it allows. I used that block to fill the gaps: sections that make the page feel like a celebration and give visitors a smoother path from landing to taking part.</p>
+        </>}>
+        <div className="island"><CpcTemplate /></div>
       </Room>
 
       <Room id="r-structure" n={3} name="The structure" title="A nav organized by how people get involved" how="Click a link in each year"
