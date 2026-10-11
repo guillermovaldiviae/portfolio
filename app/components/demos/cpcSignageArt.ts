@@ -63,10 +63,10 @@ export function towerWire() {
   return s + `</svg>`;
 }
 
-/* ---------- 01 Planning: banner, three 5 × 3 ft panels (56 px = 1 ft) ---------- */
+/* ---------- 01 Planning: banner, five 3 × 3 ft panels (56 px = 1 ft) ---------- */
 export function bannerWire() {
-  const x0 = 80, W = 840, y0 = 200, Hh = 168, P = W / 3;
-  let s = `<svg viewBox="0 0 1000 562" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Planning drawing of the sponsor banner: three 5 by 3 foot panels with numbered content zones">
+  const x0 = 80, W = 840, y0 = 200, Hh = 168, P = W / 5;
+  let s = `<svg viewBox="0 0 1000 562" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Planning drawing of the sponsor banner: five 3 by 3 foot panels with numbered content zones">
     <defs><clipPath id="bw"><rect x="${x0}" y="${y0}" width="${W}" height="${Hh}"/></clipPath></defs>`;
   s += grid(PAPERBG, "#e7e5de", "#dcd9d0");
   s += `<rect x="${x0}" y="${y0}" width="${W}" height="${Hh}" fill="#e9e7e0" stroke="#1b1b1b" stroke-width="1.5"/>`;
@@ -81,13 +81,13 @@ export function bannerWire() {
   s += `</g>`;
   s += `<g class="z z4"><circle cx="${x0 + 188}" cy="${y0 + 10}" r="22" fill="none" stroke="#1b1b1b" stroke-width="3"/><circle cx="${cx + 118}" cy="${y0 + 8}" r="18" fill="#1b1b1b" opacity=".75"/><circle cx="${cx + 70}" cy="${y0 + Hh - 2}" r="24" fill="none" stroke="#1b1b1b" stroke-width="3"/></g>`;
   s += `</g>`;
-  s += `<g stroke="#2f5bea" stroke-width="1.5" stroke-dasharray="6 5"><line x1="${x0 + P}" y1="${y0 - 14}" x2="${x0 + P}" y2="${y0 + Hh + 14}"/><line x1="${x0 + 2 * P}" y1="${y0 - 14}" x2="${x0 + 2 * P}" y2="${y0 + Hh + 14}"/></g>`;
+  s += `<g stroke="#2f5bea" stroke-width="1.5" stroke-dasharray="6 5">${[1, 2, 3, 4].map((k) => `<line x1="${x0 + k * P}" y1="${y0 - 14}" x2="${x0 + k * P}" y2="${y0 + Hh + 14}"/>`).join("")}</g>`;
   s += dimH(x0, x0 + W, y0 - 38, "15 ft overall", "#1b1b1b", PAPERBG);
-  [0, 1, 2].forEach((i) => { s += dimH(x0 + i * P + 4, x0 + (i + 1) * P - 4, y0 + Hh + 34, "5 ft", "#1b1b1b", PAPERBG); s += `<text x="${x0 + i * P + P / 2}" y="${y0 + Hh + 70}" text-anchor="middle" ${F} font-size="12" fill="#6b6b6b">Panel ${i + 1}</text>`; });
+  [0, 1, 2, 3, 4].forEach((i) => { s += dimH(x0 + i * P + 4, x0 + (i + 1) * P - 4, y0 + Hh + 34, "3 ft", "#1b1b1b", PAPERBG); s += `<text x="${x0 + i * P + P / 2}" y="${y0 + Hh + 70}" text-anchor="middle" ${F} font-size="12" fill="#6b6b6b">Panel ${i + 1}</text>`; });
   s += dimVv(x0 + W + 34, y0, y0 + Hh, "3 ft", "#1b1b1b", PAPERBG);
   s += `<text x="${x0 + P + 8}" y="${y0 + Hh + 104}" ${F} font-size="12" fill="#2f5bea">- - -  panel seam</text>`;
   s += pin(1, cx, y0 - 2) + pin(2, x0 + 230, y0 + Hh + 2) + pin(3, x0 + 40, y0 + Hh + 2) + pin(4, x0 + 188, y0 + 44);
-  s += title("BANDSHELL SPONSOR BANNER", "Three 5 × 3 ft panels · content zones, no artwork", "#1b1b1b", "#6b6b6b");
+  s += title("BANDSHELL SPONSOR BANNER", "Five 3 × 3 ft panels · content zones, no artwork", "#1b1b1b", "#6b6b6b");
   return s + `</svg>`;
 }
 
@@ -109,18 +109,18 @@ export function towerFiles() {
   return s + `</svg>`;
 }
 export function bannerFiles(round: number) {
-  const x0 = 80, W = 840, P = W / 3, Hh = 112, y0 = 230;
-  let s = `<svg viewBox="0 0 1000 562" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The sponsor banner print file across three panels on a blueprint sheet">`;
+  const x0 = 80, W = 840, P = W / 5, Hh = 112, y0 = 230;
+  let s = `<svg viewBox="0 0 1000 562" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The sponsor banner print file across five panels on a blueprint sheet">`;
   s += grid(BLUE, "#20456f", "#2c5585");
   s += `<rect x="${x0 + 6}" y="${y0 + 8}" width="${W}" height="${Hh}" fill="#0c2340" opacity=".45"/>`;
   s += `<image href="${`${SG}/banner-${round ? "final" : "round1"}.jpg`}" x="${x0}" y="${y0}" width="${W}" height="${Hh}" preserveAspectRatio="none"/>`;
   s += crops(x0, y0, W, Hh, BLM);
-  s += `<g stroke="#ffffff" stroke-width="1.4" stroke-dasharray="6 5" opacity=".85"><line x1="${x0 + P}" y1="${y0 - 16}" x2="${x0 + P}" y2="${y0 + Hh + 16}"/><line x1="${x0 + 2 * P}" y1="${y0 - 16}" x2="${x0 + 2 * P}" y2="${y0 + Hh + 16}"/></g>`;
+  s += `<g stroke="#ffffff" stroke-width="1.4" stroke-dasharray="6 5" opacity=".85">${[1, 2, 3, 4].map((k) => `<line x1="${x0 + k * P}" y1="${y0 - 16}" x2="${x0 + k * P}" y2="${y0 + Hh + 16}"/>`).join("")}</g>`;
   s += dimH(x0, x0 + W, y0 - 42, "15 ft overall", BL, BLUE);
-  [0, 1, 2].forEach((i) => { s += dimH(x0 + i * P + 4, x0 + (i + 1) * P - 4, y0 + Hh + 38, "5 ft", BL, BLUE); s += `<text x="${x0 + i * P + P / 2}" y="${y0 + Hh + 74}" text-anchor="middle" ${F} font-size="12" fill="${BLM}">Panel ${i + 1}</text>`; });
+  [0, 1, 2, 3, 4].forEach((i) => { s += dimH(x0 + i * P + 4, x0 + (i + 1) * P - 4, y0 + Hh + 38, "3 ft", BL, BLUE); s += `<text x="${x0 + i * P + P / 2}" y="${y0 + Hh + 74}" text-anchor="middle" ${F} font-size="12" fill="${BLM}">Panel ${i + 1}</text>`; });
   s += dimVv(x0 + W + 34, y0, y0 + Hh, "3 ft", BL, BLUE);
   s += `<text x="${x0}" y="${y0 + Hh + 112}" ${F} font-size="12" font-weight="600" letter-spacing="1" fill="${BL}">${round ? "FINAL" : "ROUND 1"}</text><text x="${x0 + (round ? 52 : 70)}" y="${y0 + Hh + 112}" ${F} font-size="12" fill="${BLM}">${round ? "Participant photos added at both ends" : "Sponsor names and lockup only"}</text>`;
-  s += title("BANDSHELL SPONSOR BANNER · PRINT FILE", "One artwork across three 5 × 3 ft panels", BL, BLM);
+  s += title("BANDSHELL SPONSOR BANNER · PRINT FILE", "One artwork across five 3 × 3 ft panels", BL, BLM);
   return s + `</svg>`;
 }
 

@@ -36,8 +36,8 @@ const DATA: Record<Sign, { keys: [string, string][]; notes: string[]; photos: [s
       ["Rings & dots", "Ties the banner back to the towers and site."],
     ],
     notes: [
-      "The banner ran 15 ft across the bandshell in three 5 × 3 ft panels, and it had to thank every event sponsor without turning into a wall of names. I put the lockup on the center panel, split the sponsors into two alphabetical columns, and bookended them with participant photos.",
-      "The print file across all three panels. The first round listed names only; the final added participant photos at both ends. Switch between the two rounds below.",
+      "The banner ran 15 ft across the bandshell in five 3 × 3 ft panels, and it had to thank every event sponsor without turning into a wall of names. I put the lockup on the center panel, split the sponsors into two alphabetical columns, and bookended them with participant photos.",
+      "The print file across all five panels. The first round listed names only; the final added participant photos at both ends. Switch between the two rounds below.",
       "Event day: the banner at the bandshell behind the brass band.",
     ],
     photos: [["day-band", "Sponsor banner at the bandshell behind the brass band"]],
